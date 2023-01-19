@@ -1,0 +1,28 @@
+import { Expense } from "../../models/expense.model";
+import ExpenseItem from "./ExpenseItem";
+import "./ExpensesList.css";
+
+interface Props {
+    expenses: Expense[];
+}
+
+export default function ExpensesList(props: Props) {
+
+
+    if (props.expenses.length === 0) {
+        return <h2 className="expenses-list__fallback">Found no expenses.</h2>
+    }
+
+    return (
+        <ul className="expenses-list">
+            {props.expenses.map((expense) => (
+                <ExpenseItem
+                    key={expense.id}
+                    title={expense.title}
+                    amount={expense.amount}
+                    date={expense.date}
+                />
+            ))}
+        </ul>
+    );
+}
